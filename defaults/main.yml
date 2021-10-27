@@ -1,0 +1,28 @@
+---
+# defaults file for role_cryosprac
+crysoaprc_user_name: cryosparcuser
+cryosparc_user_uid: 1007
+cryosparc_group_name: system_users
+cryosparc_group_gid: 1337
+# if install_from_download is false,
+# the cryosparc_worker folder with files has to be inside cryosparc_user_home already
+install_from_download: true
+cryosparc_user_home: /home/cryosparcuser
+#
+standalone: false
+master: false
+worker: true
+# if defined ssh key fill be fetched from
+# cryosparc_master_hostname:
+cryosparc_master_sshkey: /home/cryosparcuser/.ssh/id_rsa.pub
+cryosparc_master_user: cryosparcuser
+# cryosparc_master_pw:
+# license:
+database_path: /sbdata/cryosparc_database
+port: 39000
+#
+lane: default
+new_lane: false
+cuda_path: /sbdata/software/apps/cuda-11.4
+ssd: false
+# ssd_path:

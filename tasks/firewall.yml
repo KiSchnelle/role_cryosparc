@@ -1,0 +1,6 @@
+#  sudp apt install ufw
+#   439  sudo apt install ufw
+#   440  sudo ufw enable
+#   441  sudo ufw default deny incoming
+#   450  sudo ufw allow from
+#   452  sudo ufw status
