@@ -14,13 +14,13 @@
 - name: Extract cryosparc_master.
   ansible.builtin.unarchive:
     src: "{{ cryosparc_user_home }}/cryosparc_master.tar.gz"
-    dest: "{{ cryosparc_user_home }}"
+    dest: "{{ cryosparc_user_home }}/cryosparc_master"
   when: (standalone or master) and install_from_download
 
 - name: Extract cryosparc_worker.
   ansible.builtin.unarchive:
     src: "{{ cryosparc_user_home }}/cryosparc_worker.tar.gz"
-    dest: "{{ cryosparc_user_home }}"
+    dest: "{{ cryosparc_user_home }}/cryosparc_worker"
   when: (worker or standalone) and install_from_download
 
 - name: Install cryosparc_master.
@@ -61,22 +61,22 @@
     chdir: "{{ cryosparc_user_home }}/cryosparc_worker"
   with_items:
     - {
-        command: "cryosparcw connect --worker {{ ansible_hostname }} --master {{ cryosparc_master_hostname }} --port {{ cryosparc_port }} --ssdpath {{ ssd_path }} --lane {{ lane }} --newlane",
+        command: "./bin/cryosparcw connect --worker {{ ansible_hostname }} --master {{ cryosparc_master_hostname }} --port {{ cryosparc_port }} --ssdpath {{ ssd_path }} --lane {{ lane }} --newlane",
         ssd: true,
         newlane: true,
       }
     - {
-        command: "cryosparcw connect --worker {{ ansible_hostname }} --master {{ cryosparc_master_hostname }} --port {{ cryosparc_port }} --nossd --lane {{ lane }} --newlane",
+        command: "./bin/cryosparcw connect --worker {{ ansible_hostname }} --master {{ cryosparc_master_hostname }} --port {{ cryosparc_port }} --nossd --lane {{ lane }} --newlane",
         ssd: false,
         newlane: true,
       }
     - {
-        command: "cryosparcw connect --worker {{ ansible_hostname }} --master {{ cryosparc_master_hostname }} --port {{ cryosparc_port }} --ssdpath {{ ssd_path }} --lane {{ lane }}",
+        command: "./bin/cryosparcw connect --worker {{ ansible_hostname }} --master {{ cryosparc_master_hostname }} --port {{ cryosparc_port }} --ssdpath {{ ssd_path }} --lane {{ lane }}",
         ssd: true,
         newlane: false,
       }
     - {
-        command: "cryosparcw connect --worker {{ ansible_hostname }} --master {{ cryosparc_master_hostname }} --port {{ cryosparc_port }} --nossd --lane {{ lane }}",
+        command: "./bin/cryosparcw connect --worker {{ ansible_hostname }} --master {{ cryosparc_master_hostname }} --port {{ cryosparc_port }} --nossd --lane {{ lane }}",
         ssd: false,
         newlane: false,
       }
