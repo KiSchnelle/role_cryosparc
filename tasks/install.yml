@@ -14,13 +14,13 @@
 - name: Extract cryosparc_master.
   ansible.builtin.unarchive:
     src: "{{ cryosparc_user_home }}/cryosparc_master.tar.gz"
-    dest: "{{ cryosparc_user_home }}/cryosparc_master"
+    dest: "{{ cryosparc_user_home }}"
   when: (standalone or master) and install_from_download
 
 - name: Extract cryosparc_worker.
   ansible.builtin.unarchive:
     src: "{{ cryosparc_user_home }}/cryosparc_worker.tar.gz"
-    dest: "{{ cryosparc_user_home }}/cryosparc_worker"
+    dest: "{{ cryosparc_user_home }}"
   when: (worker or standalone) and install_from_download
 
 - name: Install cryosparc_master.
