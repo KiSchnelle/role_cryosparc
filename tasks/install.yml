@@ -31,7 +31,7 @@
 
 - name: Install cryosparc standalone.
   ansible.builtin.shell:
-    cmd: { { item.command } }
+    cmd: "{{ item.command }}"
     chdir: "{{ cryosparc_user_home }}/cryosparc_master"
   with_items:
     - {
@@ -56,7 +56,7 @@
 
 - name: Connect worker.
   ansible.builtin.shell:
-    cmd: { { item.command } }
+    cmd: "{{ item.command }}"
     chdir: "{{ cryosparc_user_home }}/cryosparc_worker"
   with_items:
     - {
