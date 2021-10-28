@@ -53,6 +53,7 @@
 - name: Start cryosparc.
   ansible.builtin.shell:
     cmd: "./bin/cryosparccm start"
+  when: standalone or master
 
 - name: Connect worker.
   ansible.builtin.shell:
