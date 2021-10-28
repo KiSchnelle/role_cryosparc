@@ -25,4 +25,4 @@ lane: default
 new_lane: false
 cuda_path: /sbdata/software/apps/cuda-11.4
 ssd: false
-# ssd_path:
+ssd_path:

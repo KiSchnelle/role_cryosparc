@@ -13,7 +13,6 @@
     group: "{{ cryosparc_group_name }}"
     create_home: true
     home: "{{ cryosparc_user_home }}"
-    shell: "/bin/bash "
     state: present
     system: false
     generate_ssh_key: true
