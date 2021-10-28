@@ -35,7 +35,7 @@
     mode: 0600
 
 - name: Fetch public ssh key for cryosparcuser from cryosparc master.
-  ansible.builtin.shell: 'ANSIBLE_HOST_KEY_CHECKING=false ansible -i {{ cryosparc_master_hostname }}, --extra-vars "ansible_ssh_user={{ cryosparc_master_user }} ansible_ssh_pass={{ cryosparc_master_pw }}" -m known_hosts -a "host=ernie120 key="ernie120,192.168.123.47 ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBC+Gvb8jkIdcy+FuU9kfxC2bP28pQ5VApqdpZXKIgtfEtrJbVjRda3Fywp/A/JSlVc65YqF0IyHz1stNM19JHzs="" all'
+  ansible.builtin.shell: 'ANSIBLE_HOST_KEY_CHECKING=false ansible -i {{ cryosparc_master_hostname }}, --extra-vars "ansible_ssh_user={{ cryosparc_master_user }} ansible_ssh_pass={{ cryosparc_master_pw }}" -m known_hosts -a "host={{ ansible_hostname }} key="{{ ansible_hostname }},{{ ansible_ip }} {{ key }}"" all'
   when: worker
 
 - name: Fetch public ssh key for cryosparcuser from cryosparc master.
