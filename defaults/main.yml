@@ -19,7 +19,7 @@ cryosparc_master_user: cryosparcuser
 # cryosparc_master_pw:
 # license:
 database_path: /sbdata/cryosparc_database
-port: 39000
+cryosparc_port: 39000
 #
 lane: default
 new_lane: false
