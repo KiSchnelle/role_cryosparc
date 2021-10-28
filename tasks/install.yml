@@ -3,30 +3,40 @@
   ansible.builtin.get_url:
     url: "https://get.cryosparc.com/download/master-latest/{{ license }}"
     dest: "{{ cryosparc_user_home }}/cryosparc_master.tar.gz"
+  become: yes
+  become_user: cryosparcuser
   when: (standalone or master) and install_from_download
 
 - name: Download cryosparc_worker.
   ansible.builtin.get_url:
     url: "https://get.cryosparc.com/download/worker-latest/{{ license }}"
     dest: "{{ cryosparc_user_home }}/cryosparc_worker.tar.gz"
+  become: yes
+  become_user: cryosparcuser
   when: (worker or standalone) and install_from_download
 
 - name: Extract cryosparc_master.
   ansible.builtin.unarchive:
     src: "{{ cryosparc_user_home }}/cryosparc_master.tar.gz"
     dest: "{{ cryosparc_user_home }}"
+  become: yes
+  become_user: cryosparcuser
   when: (standalone or master) and install_from_download
 
 - name: Extract cryosparc_worker.
   ansible.builtin.unarchive:
     src: "{{ cryosparc_user_home }}/cryosparc_worker.tar.gz"
     dest: "{{ cryosparc_user_home }}"
+  become: yes
+  become_user: cryosparcuser
   when: (worker or standalone) and install_from_download
 
 - name: Install cryosparc_master.
   ansible.builtin.shell:
     cmd: "./install.sh --license {{ license }} --hostname {{ ansible_hostname }} --dbpath {{ database_path }} --port {{ cryosparc_port }} --yes"
     chdir: "{{ cryosparc_user_home }}/cryosparc_master"
+  become: yes
+  become_user: cryosparcuser
   when: master
 
 - name: Install cryosparc standalone.
@@ -42,23 +52,31 @@
         command: "./install.sh --license {{ license }} --worker_path {{ cryosparc_user_home }}/cryosparc_worker --cudapath {{ cuda_path }} --port {{ cryosparc_port }} --yes",
         ssd: false,
       }
+  become: yes
+  become_user: cryosparcuser
   when: standalone and item.ssd == ssd
 
 - name: Install cryosparc_worker.
   ansible.builtin.shell:
     cmd: "./install.sh --license {{ license }} --cudapath {{ cuda_path }} --yes"
     chdir: "{{ cryosparc_user_home }}/cryosparc_worker"
+  become: yes
+  become_user: cryosparcuser
   when: worker
 
 - name: Start cryosparc.
   ansible.builtin.shell:
     cmd: "./bin/cryosparccm start"
+  become: yes
+  become_user: cryosparcuser
   when: standalone or master
 
 - name: Connect worker.
   ansible.builtin.shell:
     cmd: "{{ item.command }}"
     chdir: "{{ cryosparc_user_home }}/cryosparc_worker"
+  become: yes
+  become_user: cryosparcuser
   with_items:
     - {
         command: "./bin/cryosparcw connect --worker {{ ansible_hostname }} --master {{ cryosparc_master_hostname }} --port {{ cryosparc_port }} --ssdpath {{ ssd_path }} --lane {{ lane }} --newlane",
