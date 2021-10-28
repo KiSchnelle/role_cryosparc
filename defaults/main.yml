@@ -14,7 +14,7 @@ master: false
 worker: true
 # if defined ssh key fill be fetched from
 # cryosparc_master_hostname:
-cryosparc_master_sshkey: /home/cryosparcuser/.ssh/id_rsa.pub
+cryosparc_master_sshkey: /home/cryosparcuser/.ssh/id_ecdsa.pub
 cryosparc_master_user: cryosparcuser
 # cryosparc_master_pw:
 # license:
