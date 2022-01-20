@@ -24,6 +24,6 @@ cryosparc_port: 39000
 worker_connect: false
 lane: default
 new_lane: false
-cuda_path: /sbdata/software/apps/cuda-11.4
+cuda_path: /sbdata/software/apps/cuda-11.5
 ssd: false
 ssd_path:
