@@ -98,4 +98,6 @@
         ssd: false,
         newlane: false,
       }
-  when: worker and item.ssd == ssd and item.newlane == new_lane
+  when: worker and worker_connect and item.ssd == ssd and item.newlane == new_lane
+  
+  # TODO add cluster, atleast slurm for now
