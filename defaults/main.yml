@@ -21,6 +21,7 @@ cryosparc_master_user: cryosparcuser
 database_path: /sbdata/cryosparc_database
 cryosparc_port: 39000
 #
+worker_connect: false
 lane: default
 new_lane: false
 cuda_path: /sbdata/software/apps/cuda-11.4
