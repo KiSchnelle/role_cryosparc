@@ -6,6 +6,7 @@
   become: yes
   become_user: "{{ cryosparc_user_name }}"
   when: (standalone or master) and install_from_download
+  retries: 3
 
 - name: Download cryosparc_worker.
   ansible.builtin.get_url:
@@ -14,6 +15,7 @@
   become: yes
   become_user: "{{ cryosparc_user_name }}"
   when: (worker or standalone) and install_from_download
+  retries: 3
 
 - name: Extract cryosparc_master.
   ansible.builtin.unarchive:
