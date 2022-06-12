@@ -8,7 +8,7 @@
 
 - name: Add cryosparcuser user
   ansible.builtin.user:
-    name: "{{ crysoaprc_user_name }}"
+    name: "{{ cryosparc_user_name: }}"
     uid: "{{ cryosparc_user_uid }}"
     group: "{{ cryosparc_group_name }}"
     create_home: true
