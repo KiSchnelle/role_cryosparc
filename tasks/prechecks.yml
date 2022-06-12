@@ -1,0 +1,34 @@
+---
+- name: Check for cryosparcuser variables.
+  block:
+    - name: Check if cryosparc_user_name is defined.
+      ansible.builtin.debug:
+        msg: "PASS | Cryosparc user name is {{ cryosparc_user_name }}"
+      when: cryosparc_user_name is defined
+
+    - name: Set cryosparc_user_name to default "cryosparcuser".
+      ansible.builtin.set_fact:
+        cryosparc_user_name: "cryosparcuser"
+      when: cryosparc_user_name is not defined
+
+- name: Check for cryosparcuser variables.
+  block:
+    - name: Check if cryosparc_user_name is defined.
+      ansible.builtin.debug:
+        msg: "PASS | Cryosparc user name is {{ cryosparc_user_name }}"
+      when: cryosparc_user_name is defined
+
+    - name: Set cryosparc_user_name to default "cryosparcuser".
+      ansible.builtin.set_fact:
+        cryosparc_user_name: "cryosparcuser"
+      when: cryosparc_user_name is not defined
+
+    - name: Check if cryosparc_user_uid is defined.
+      ansible.builtin.debug:
+        msg: "PASS | Cryosparc user uid is {{ cryosparc_user_uid }}"
+      when: cryosparc_user_uid is defined
+
+    - name: Set cryosparc_user_uid to default "1337".
+      ansible.builtin.set_fact:
+        cryosparc_user_uid: 1337
+      when: cryosparc_user_uid is not defined

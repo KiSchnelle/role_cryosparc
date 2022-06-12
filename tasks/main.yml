@@ -15,6 +15,20 @@
     (ansible_distribution|lower == 'centos' and ansible_distribution_major_version is version_compare('8', '==')) or
     (ansible_distribution|lower == 'ubuntu' and ansible_distribution_major_version is version_compare('20', '=='))
 
-- include_tasks: users.yml
+- include_tasks: prechecks.yml
+
+- include_tasks: user.yml
+
+- include_tasks: known_host.yml
+
+- include_tasks: ssh.yml
+
+# - include_tasks: firewall.yml
+
+# - include_tasks: nvidia_dirver.yml
+
+# - include_tasks: cuda.yml
+
+- include_tasks: download.yml
 
 - include_tasks: install.yml

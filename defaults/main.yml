@@ -1,29 +1,54 @@
 ---
 # defaults file for role_cryosprac
-crysoaprc_user_name: cryosparcuser
-cryosparc_user_uid: 1007
+# -------------------------------------------------------
+# Required: Cryosparcuser
+# -------------------------------------------------------
+cryosparc_user_name: cryosparcuser
+cryosparc_user_uid: 1337
 cryosparc_group_name: system_users
 cryosparc_group_gid: 1337
-# if install_from_download is false,
-# the cryosparc_worker folder with files has to be inside cryosparc_user_home already
-install_from_download: true
 cryosparc_user_home: /home/cryosparcuser
-#
+cryosparc_ssh_key_type: ed25519
+shared_home: false
+# -------------------------------------------------------
+# Requried: Configuration
+# -------------------------------------------------------
+cryosparc_version: latest
+cryosparc_port: 39000
+# license: YourLicense
+# -------------------------------------------------------
+# Required: Install mode
+# -------------------------------------------------------
 standalone: false
 master: false
 worker: true
-# if defined ssh key fill be fetched from
-# cryosparc_master_hostname:
-cryosparc_master_sshkey: /home/cryosparcuser/.ssh/id_ecdsa.pub
-cryosparc_master_user: cryosparcuser
-# cryosparc_master_pw:
-# license:
+install_from_download: true
+# -------------------------------------------------------
+# Required for master/standalone install
+# -------------------------------------------------------
 database_path: /sbdata/cryosparc_database
-cryosparc_port: 39000
-#
+master_install_dir: /home/cryopsarcuser
+# -------------------------------------------------------
+# Required for worker/standalone install
+# -------------------------------------------------------
+worker_install_dir: /home/cryopsarcuser
 worker_connect: false
 lane: default
-new_lane: false
-cuda_path: /sbdata/software/apps/cuda-11.5
+new_lane: true
 ssd: false
-ssd_path:
+# ssd_path:
+# -------------------------------------------------------
+# Required for worker install without shared home
+# choose one of the following options:
+# -------------------------------------------------------
+# option 1: define ssh pub key from master user
+# cryosparc_master_pub_key:
+# option 2:
+# cryosparc_master_hostname: log01
+# cryosparc_master_sshkey: /home/cryosparcuser/.ssh/id_ecdsa.pub
+# cryosparc_master_user: cryosparcuser
+# cryosparc_master_pw: SuperSecurePW
+# -------------------------------------------------------
+# Optional configuration
+# -------------------------------------------------------
+# cuda_path: /sbdata/software/apps/cuda-11.5

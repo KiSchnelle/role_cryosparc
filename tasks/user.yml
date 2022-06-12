@@ -1,0 +1,19 @@
+---
+- name: Add cryosparcuser group
+  ansible.builtin.group:
+    name: "{{ cryosparc_group_name }}"
+    gid: "{{ cryosparc_group_gid }}"
+    state: present
+    system: false
+
+- name: Add cryosparcuser user
+  ansible.builtin.user:
+    name: "{{ crysoaprc_user_name }}"
+    uid: "{{ cryosparc_user_uid }}"
+    group: "{{ cryosparc_group_name }}"
+    create_home: true
+    home: "{{ cryosparc_user_home }}"
+    password: "!"
+    state: present
+    generate_ssh_key: true
+    ssh_key_type: "{{ cryosparc_ssh_key_type }}"
