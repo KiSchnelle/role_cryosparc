@@ -23,6 +23,7 @@ standalone: false
 master: false
 worker: true
 install_from_download: true
+cluster_install: true
 # -------------------------------------------------------
 # Required for master/standalone install
 # -------------------------------------------------------
@@ -38,7 +39,7 @@ new_lane: true
 ssd: false
 # ssd_path:
 # -------------------------------------------------------
-# Required for worker install without shared home
+# Required for worker install without shared home and not cluster install
 # choose one of the following options:
 # -------------------------------------------------------
 # option 1: define ssh pub key from master user
