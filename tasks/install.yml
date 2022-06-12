@@ -4,7 +4,7 @@
     cmd: "./install.sh --license {{ license }} --hostname {{ ansible_hostname }} --dbpath {{ database_path }} --port {{ cryosparc_port }} --yes"
     chdir: "{{ cryosparc_user_home }}/cryosparc_master"
   become: yes
-  become_user: "{{ crysoaprc_user_name }}"
+  become_user: "{{ cryosparc_user_name }}"
   when: master
 
 - name: Install cryosparc standalone.
@@ -21,7 +21,7 @@
         ssd: false,
       }
   become: yes
-  become_user: "{{ crysoaprc_user_name }}"
+  become_user: "{{ cryosparc_user_name }}"
   when: standalone and item.ssd == ssd
 
 - name: Install cryosparc_worker.
@@ -29,14 +29,14 @@
     cmd: "./install.sh --license {{ license }} --cudapath {{ cuda_path }} --yes"
     chdir: "{{ cryosparc_user_home }}/cryosparc_worker"
   become: yes
-  become_user: "{{ crysoaprc_user_name }}"
+  become_user: "{{ cryosparc_user_name }}"
   when: worker
 
 - name: Start cryosparc.
   ansible.builtin.shell:
     cmd: "./bin/cryosparccm start"
   become: yes
-  become_user: "{{ crysoaprc_user_name }}"
+  become_user: "{{ cryosparc_user_name }}"
   when: standalone or master
 
 - name: Connect worker.
@@ -44,7 +44,7 @@
     cmd: "{{ item.command }}"
     chdir: "{{ cryosparc_user_home }}/cryosparc_worker"
   become: yes
-  become_user: "{{ crysoaprc_user_name }}"
+  become_user: "{{ cryosparc_user_name }}"
   with_items:
     - {
         command: "./bin/cryosparcw connect --worker {{ ansible_hostname }} --master {{ cryosparc_master_hostname }} --port {{ cryosparc_port }} --ssdpath {{ ssd_path }} --lane {{ lane }} --newlane",

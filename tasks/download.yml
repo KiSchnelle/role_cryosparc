@@ -4,7 +4,7 @@
     url: "https://get.cryosparc.com/download/master-latest/{{ license }}"
     dest: "{{ cryosparc_user_home }}/cryosparc_master.tar.gz"
   become: yes
-  become_user: "{{ crysoaprc_user_name }}"
+  become_user: "{{ cryosparc_user_name }}"
   when: (standalone or master) and install_from_download
 
 - name: Download cryosparc_worker.
@@ -12,7 +12,7 @@
     url: "https://get.cryosparc.com/download/worker-latest/{{ license }}"
     dest: "{{ cryosparc_user_home }}/cryosparc_worker.tar.gz"
   become: yes
-  become_user: "{{ crysoaprc_user_name }}"
+  become_user: "{{ cryosparc_user_name }}"
   when: (worker or standalone) and install_from_download
 
 - name: Extract cryosparc_master.
@@ -20,7 +20,7 @@
     src: "{{ cryosparc_user_home }}/cryosparc_master.tar.gz"
     dest: "{{ cryosparc_user_home }}"
   become: yes
-  become_user: "{{ crysoaprc_user_name }}"
+  become_user: "{{ cryosparc_user_name }}"
   when: (standalone or master) and install_from_download
 
 - name: Extract cryosparc_worker.
@@ -28,5 +28,5 @@
     src: "{{ cryosparc_user_home }}/cryosparc_worker.tar.gz"
     dest: "{{ cryosparc_user_home }}"
   become: yes
-  become_user: "{{ crysoaprc_user_name }}"
+  become_user: "{{ cryosparc_user_name }}"
   when: (worker or standalone) and install_from_download
